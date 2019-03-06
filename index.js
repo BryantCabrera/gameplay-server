@@ -4,6 +4,8 @@ import cors from 'cors';
 
 const app = express();
 
+require('./db');
+
 app.get('/', (req, res) => {
     res.send('The GamePlay app is working.');
 });

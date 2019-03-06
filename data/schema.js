@@ -8,7 +8,7 @@ const typeDefs = `
         username: String
         email: String
         password: String
-        games: [Game]
+        games: [UserGame]
     }
 
     type UserGame {
@@ -28,6 +28,35 @@ const typeDefs = `
 
     type Query {
         getUsers: [User]
+    }
+
+    input UserGameInput {
+        id: ID
+        title: String
+        author: String
+        wins: Int
+        losses: Int
+    }
+
+    input UserInput {
+        id: ID
+        firstName: String
+        username: String
+        email: String
+        password: String
+        games: [UserGameInput]
+    }
+
+    input GameInput {
+        id: ID
+        title: String
+        author: String
+        code: String
+    }
+
+    type Mutation {
+        createUser(input: UserInput): User
+        createGame(input: GameInput): Game
     }
 `;
 
