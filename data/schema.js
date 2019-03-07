@@ -4,7 +4,6 @@ import { ApolloServer } from 'apollo-server-express';
 const typeDefs = `
     type User {
         id: ID
-        firstName: String
         username: String
         email: String
         password: String
@@ -43,7 +42,6 @@ const typeDefs = `
 
     input UserInput {
         id: ID
-        firstName: String
         username: String
         email: String
         password: String
