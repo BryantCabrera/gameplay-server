@@ -27,7 +27,10 @@ const typeDefs = `
     }
 
     type Query {
+        getOneUser(id: ID!): User
         getUsers: [User]
+        getOneGame(id: ID!): Game
+        getGames: [Game]
     }
 
     input UserGameInput {
@@ -56,7 +59,11 @@ const typeDefs = `
 
     type Mutation {
         createUser(input: UserInput): User
+        updateUser(input: UserInput): User
+        deleteUser(id: ID!): String
         createGame(input: GameInput): Game
+        updateGame(input: GameInput): Game
+        deleteGame(id: ID!): String
     }
 `;
 
