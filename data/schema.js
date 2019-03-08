@@ -4,9 +4,10 @@ import { ApolloServer } from 'apollo-server-express';
 const typeDefs = `
     type User {
         id: ID
-        username: String
-        email: String
-        password: String
+        username: String!
+        email: String!
+        password: String!
+        img: String
         games: [UserGame]
     }
 
@@ -16,13 +17,15 @@ const typeDefs = `
         author: String
         wins: Int
         losses: Int
+        draws: Int
     }
 
     type Game {
         id: ID
-        title: String
-        author: String
-        code: String
+        title: String!
+        author: String!
+        description: String
+        code: String!
     }
 
     type Query {
@@ -38,6 +41,7 @@ const typeDefs = `
         author: String
         wins: Int
         losses: Int
+        draws: Int
     }
 
     input UserInput {
@@ -45,6 +49,7 @@ const typeDefs = `
         username: String
         email: String
         password: String
+        img: String
         games: [UserGameInput]
     }
 

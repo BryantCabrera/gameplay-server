@@ -15,6 +15,7 @@ export const resolvers = {
             }
         },
         getUsers: async () => {
+            console.log('getUsers route');
             try {
                 const users = await User.find();
         
@@ -45,7 +46,7 @@ export const resolvers = {
     },
     Mutation: {
         createUser: async (parent, args) => {
-            console.log(args, ' this is args from resolvers.js > mutation');
+            console.log(args, ' this is args from resolvers.js > mutation > createUser');
 
             try {
                 const newUser = await User.create(args.input);
