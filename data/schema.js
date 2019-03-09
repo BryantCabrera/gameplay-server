@@ -53,6 +53,11 @@ const typeDefs = `
         games: [UserGameInput]
     }
 
+    input UserLoginInput {
+        email: String
+        password: String
+    }
+
     input GameInput {
         id: ID
         title: String
@@ -62,6 +67,7 @@ const typeDefs = `
 
     type Mutation {
         createUser(input: UserInput): User
+        loginUser(input: UserLoginInput): User
         updateUser(input: UserInput): User
         deleteUser(id: ID!): String
         createGame(input: GameInput): Game

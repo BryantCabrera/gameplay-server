@@ -66,6 +66,28 @@ export const resolvers = {
                 return err
             }
         },
+        loginUser: async (parent, args) => {
+            try {
+                const loggedUser = await User.findOne({email: args.input.email});
+
+                if (loggedUser) {
+                    //if passwords match, send user info to front-end, else, return error message
+                    if (bcrypt.compareSync(args.input.password, loggedUser.password)) {
+                        req.session.user = loggedUser; 
+                        req.session.logged = true;
+                        req.session.message = '';
+
+                        return req.session
+                    } else {
+                        return 'Your password does not match.'
+                    }
+                } else {
+                    return 'Your username does not exist.'
+                }
+            } catch(err) {
+                return err
+            }
+        },
         updateUser: async (root, {input}) => {
             try {
                 const updatedUser = await  User.findOneAndReplace(input._id, input,{new: true});
