@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/user';
 import Game from '../models/game';
+import bcrypt from 'bcryptjs';
 
 export const resolvers = {
     Query: {
@@ -46,6 +47,13 @@ export const resolvers = {
     },
     Mutation: {
         createUser: async (parent, args) => {
+            //hashed password
+            // const password = args.input.password;
+            // const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+            args.input.password = bcrypt.hashSync(args.input.password, bcrypt.genSaltSync(10));
+
+            // console.log(bcrypt.hashSync(args.input.password, bcrypt.genSaltSync(10)), ' this is args from resolvers.js > mutation > createUser');
             console.log(args, ' this is args from resolvers.js > mutation > createUser');
 
             try {
