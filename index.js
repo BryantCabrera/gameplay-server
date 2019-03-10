@@ -1,6 +1,7 @@
 import express from 'express';
 const session = require('express-session');
 import GraphqlServer from './data/schema';
+const graphqlHTTP = require('express-graphql');
 import cors from 'cors';
 
 const app = express();
@@ -18,6 +19,12 @@ app.use(session({
 app.get('/', (req, res) => {
     res.send('The GamePlay app is working.');
 });
+
+//from session tutorial
+// app.use('/graphql', graphqlHTTP({
+//     schema: GraphqlServer,
+//     graphiql: true
+// }));
 
 app.use('*', cors({ origin: 'http://localhost:3000'}));
 
