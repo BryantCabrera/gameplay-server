@@ -54,8 +54,8 @@ const typeDefs = `
     }
 
     input UserLoginInput {
-        email: String
-        password: String
+        email: String!
+        password: String!
     }
 
     input GameInput {

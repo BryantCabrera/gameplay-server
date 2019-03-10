@@ -63,8 +63,11 @@ export const resolvers = {
             }
         },
         loginUser: async (parent, args) => {
+            console.log('hitting loginUser');
+            console.log(parent, 'parent for loginUser');
             try {
                 const loggedUser = await User.findOne({email: args.input.email});
+                console.log(loggedUser, ' loggedUser');
 
                 if (loggedUser) {
                     //if passwords match, send user info to front-end, else, return error message

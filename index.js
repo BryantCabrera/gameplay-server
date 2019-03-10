@@ -1,10 +1,19 @@
-import express     from 'express';
+import express from 'express';
+const session = require('express-session');
 import GraphqlServer from './data/schema';
 import cors from 'cors';
 
 const app = express();
 
 require('./db');
+
+/********** MIDDLEWARE **********/
+app.use(session({
+    secret: "THIS IS A RANDOM STRING SECRET",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 }
+}));
 
 app.get('/', (req, res) => {
     res.send('The GamePlay app is working.');
