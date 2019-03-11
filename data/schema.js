@@ -11,6 +11,14 @@ const typeDefs = `
         games: [UserGame]
     }
 
+    type LoggedUser {
+        id: ID
+        username: String
+        email: String
+        img: String
+        games: [UserGame]
+    }
+
     type UserGame {
         id: ID
         title: String
@@ -67,7 +75,7 @@ const typeDefs = `
 
     type Mutation {
         createUser(input: UserInput): User
-        loginUser(input: UserLoginInput): User
+        loginUser(input: UserLoginInput): LoggedUser
         updateUser(input: UserInput): User
         deleteUser(id: ID!): String
         createGame(input: GameInput): Game
