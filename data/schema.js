@@ -39,6 +39,7 @@ const typeDefs = `
     type Query {
         getOneUser(id: ID!): User
         getUsers: [User]
+        getLoggedUser: LoggedUser
         getOneGame(id: ID!): Game
         getGames: [Game]
     }
