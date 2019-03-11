@@ -25,6 +25,15 @@ export const resolvers = {
                 return err
             }
         },
+        getLoggedUser: async (parent, args, context) => {
+            try {
+                const LoggedUser = await context.req.user;
+                return LoggedUser;
+            } catch (err) {
+                console.log(err, ' this is getLoggedUser error.');
+                return err
+            }
+        },
         getOneGame: async (root, {id}) => {
             try {
                 const foundGame = await Game.findById(id);
