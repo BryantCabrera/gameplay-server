@@ -5,8 +5,8 @@ const typeDefs = `
     type User {
         id: ID
         username: String!
-        email: String!
-        password: String!
+        email: String
+        password: String
         img: String
         games: [UserGame]
     }
@@ -79,6 +79,11 @@ const typeDefs = `
 const GraphqlServer = new ApolloServer({
   typeDefs: typeDefs,
   resolvers: resolvers,
+  context: ({req}) => {
+    return {
+        req
+    }
+  },
   playground: {
     endpoint: `http://localhost:4000/graphql`,
     setting: {

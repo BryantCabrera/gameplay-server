@@ -62,9 +62,9 @@ export const resolvers = {
                 return err
             }
         },
-        loginUser: async (parent, args, request) => {
+        loginUser: async (parent, args, context) => {
             console.log('hitting loginUser');
-            console.log(request, 'request for loginUser');
+            console.log(context.req.session, 'context.req.session for loginUser');
             try {
                 const loggedUser = await User.findOne({email: args.input.email});
                 console.log(loggedUser, ' loggedUser');
@@ -72,11 +72,11 @@ export const resolvers = {
                 if (loggedUser) {
                     //if passwords match, send user info to front-end, else, return error message
                     if (bcrypt.compareSync(args.input.password, loggedUser.password)) {
-                        request.session.user = loggedUser; 
-                        request.session.logged = true;
-                        request.session.message = '';
-                        console.log(request.session, ' this is req.session from loginUser');
-                        return request.session
+                        context.req.session.user = loggedUser; 
+                        context.req.session.logged = true;
+                        context.req.session.message = '';
+                        console.log(context.req.session.user, ' this is context.req.session from loginUser');
+                        return context.req.session.user
                     } else {
                         return 'Your password does not match.'
                     }
